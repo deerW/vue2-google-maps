@@ -52,13 +52,15 @@ export const loadGmapApi = (options, loadCn) => {
     }
     options['callback'] = 'vueGoogleMapsInit'
 
-    let baseUrl = 'https://maps.googleapis.com/'
+    const protocol = window.location.protocol
+
+    let host = '//maps.googleapis.com/'
 
     if (typeof loadCn === 'boolean' && loadCn === true) {
-      baseUrl = 'http://maps.google.cn/'
+      host = '//ditu.google.cn/'
     }
 
-    let url = baseUrl + 'maps/api/js?' +
+    let url = protocol + host + 'maps/api/js?' +
       Object.keys(options)
         .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(options[key]))
         .join('&')
